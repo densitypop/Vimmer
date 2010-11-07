@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     vimmer (0.0.1)
+      thor
 
 GEM
   remote: http://rubygems.org/
@@ -33,6 +34,7 @@ GEM
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
     term-ansicolor (1.0.5)
+    thor (0.14.4)
 
 PLATFORMS
   ruby
@@ -42,4 +44,5 @@ DEPENDENCIES
   bundler (>= 1.0.0)
   cucumber
   rspec (~> 2.0.0)
+  thor
   vimmer!
