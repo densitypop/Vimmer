@@ -10,7 +10,7 @@ module Vimmer
         installer = Vimmer::Installers::Github.new(path)
         installer.install
       rescue
-        $stderr.puts "The plugin not-found could not be found"
+        $stderr.puts "The plugin #{installer.name} could not be found"
         exit 1
       end
     end
