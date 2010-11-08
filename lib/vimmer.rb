@@ -1,5 +1,6 @@
 module Vimmer
 
+  autoload :Installers,   'vimmer/installers'
   autoload :Settings,     'vimmer/settings'
   autoload :PluginPath,   'vimmer/plugin_path'
   autoload :Plugin,       'vimmer/plugin'

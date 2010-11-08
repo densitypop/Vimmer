@@ -7,7 +7,8 @@ module Vimmer
     desc "install PATH", "Installs plugin available at path PATH"
     def install(path)
       if path =~ /vim-awesomemofo/
-        puts "vim-awesomemofo has been installed"
+        installer = Vimmer::Installers::Github.new(path)
+        installer.install
       else
         $stderr.puts "The plugin not-found could not be found"
         exit 1
