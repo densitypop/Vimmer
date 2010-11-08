@@ -5,7 +5,7 @@ describe "When installing from Github" do
 
   context "with a non-existant URL" do
 
-    let(:installer) { Github.new("https://github.com/tpope/not-found") }
+    let(:installer) { Github.new("https://github.com/tpope/not-found.git") }
 
     specify "the installer should raise an exception" do
       lambda { installer.install }.should raise_error("Not found")
@@ -15,7 +15,7 @@ describe "When installing from Github" do
 
   context "with a good URL" do
 
-    let(:installer) { Github.new("https://github.com/tpope/vim-awesomemofo") }
+    let(:installer) { Github.new("https://github.com/tpope/vim-awesomemofo.git") }
 
     specify "the installer should not raise an exception" do
       lambda { installer.install }.should_not raise_error
@@ -23,10 +23,20 @@ describe "When installing from Github" do
 
   end
 
+  context "with a malformed URL" do
+
+    subject { Github.new("https://foo.com/bar") }
+
+    specify "the installer should raise an exception" do
+      lambda { subject }.should raise_error("Invalid URL")
+    end
+
+  end
+
 
   it "provides access to the path" do
-    Github.new("https://github.com/tpope/vim-awesomemofo").
-      path.should == "https://github.com/tpope/vim-awesomemofo"
+    Github.new("https://github.com/tpope/vim-awesomemofo.git").
+      path.should == "https://github.com/tpope/vim-awesomemofo.git"
 
   end
 

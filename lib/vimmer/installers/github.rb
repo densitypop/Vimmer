@@ -4,6 +4,7 @@ module Vimmer
       attr_reader :path
 
       def initialize(path)
+        raise "Invalid URL" unless path =~ %r{^https://github.com/[a-zA-Z0-9-_\+%]+/[a-zA-Z0-9\-_\+]+.git$}
         @path = path
       end
 
