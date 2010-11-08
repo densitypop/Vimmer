@@ -6,7 +6,12 @@ require 'vimmer'
 
 RSpec.configure do |config|
 
+  config.mock_with :rr
+
+
   def app_root
     Pathname.new(File.join(__FILE__, "..", "tmp", ".vimmer"))
   end
+
+
 end

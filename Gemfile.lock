@@ -23,6 +23,7 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     json (1.4.6)
+    rr (1.0.2)
     rspec (2.0.1)
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
@@ -43,6 +44,7 @@ DEPENDENCIES
   aruba
   bundler (>= 1.0.0)
   cucumber
+  rr
   rspec (~> 2.0.0)
   thor
   vimmer!
