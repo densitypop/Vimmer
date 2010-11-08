@@ -1,5 +1,10 @@
-Then /^a plugin named "([^"]*)" should be installed$/ do |arg1|
-  @vimmer.installed_plugins.should include("vim-awesomemofo")
-  @vimmer.plugin_store["vim-awesomemofo"].should =~ %r{tmp/aruba/bundles/vim-awesomemofo}
+Then /^a plugin named "([^"]*)" should be installed$/ do |name|
+  @vimmer.installed_plugins.should include(name)
+  @vimmer.plugin_store[name].should =~ %r{tmp/aruba/bundles/#{name}}
+end
+
+Then /^a plugin named "([^"]*)" should not be installed$/ do |name|
+  @vimmer.installed_plugins.should_not include(name)
+  @vimmer.plugin_store[name].should be_nil
 end
 

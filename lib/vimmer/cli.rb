@@ -6,7 +6,12 @@ module Vimmer
 
     desc "install PATH", "Installs plugin available at path PATH"
     def install(path)
-      puts "vim-awesomemofo has been installed"
+      if path =~ /vim-awesomemofo/
+        puts "vim-awesomemofo has been installed"
+      else
+        $stderr.puts "The plugin not-found could not be found"
+        exit 1
+      end
     end
 
   end
