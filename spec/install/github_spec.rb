@@ -21,6 +21,10 @@ describe "When installing from Github" do
       lambda { installer.install }.should_not raise_error
     end
 
+    specify "the installer calculates the plugin's name" do
+      installer.name.should == "vim-awesomemofo"
+    end
+
   end
 
   context "with a malformed URL" do
@@ -37,7 +41,6 @@ describe "When installing from Github" do
   it "provides access to the path" do
     Github.new("https://github.com/tpope/vim-awesomemofo.git").
       path.should == "https://github.com/tpope/vim-awesomemofo.git"
-
   end
 
 
