@@ -22,7 +22,7 @@ describe "When installing from Github" do
     end
 
     specify "the installer calculates the plugin's name" do
-      installer.name.should == "vim-awesomemofo"
+      installer.plugin_name.should == "vim-awesomemofo"
     end
 
   end
