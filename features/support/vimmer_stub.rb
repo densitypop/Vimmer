@@ -6,7 +6,16 @@ class VimmerStub
 
 
   def plugin_store
-    YAML.load_file("tmp/aruba/.vimmer/plugins.yml")
+    if plugin_store_file.exist?
+      YAML.load_file(plugin_store_file)
+    else
+      {}
+    end
+  end
+
+
+  def plugin_store_file
+    Pathname.new("tmp/aruba/.vimmer/plugins.yml")
   end
 
 end
