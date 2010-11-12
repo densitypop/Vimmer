@@ -14,6 +14,7 @@ module Vimmer
         if path =~ /not-found/
           raise "Not found"
         else
+          Vimmer.add_plugin(plugin_name, path)
           puts "vim-awesomemofo has been installed"
         end
       end

@@ -1,12 +1,12 @@
 class VimmerStub
 
   def installed_plugins
-    ["vim-awesomemofo"]
+    plugin_store.map{ |name,path| name }
   end
 
 
   def plugin_store
-    {"vim-awesomemofo" => "tmp/aruba/bundles/vim-awesomemofo"}
+    YAML.load_file("tmp/aruba/.vimmer/plugins.yml")
   end
 
 end

@@ -43,5 +43,14 @@ describe "When installing from Github" do
       path.should == "https://github.com/tpope/vim-awesomemofo.git"
   end
 
+  it "adds plugin to list of installed plugins" do
+
+    installer = Github.new("https://github.com/tpope/vim-awesomemofo.git")
+    installer.install
+
+    Vimmer.plugins["vim-awesomemofo"].should == "https://github.com/tpope/vim-awesomemofo.git"
+
+  end
+
 
 end

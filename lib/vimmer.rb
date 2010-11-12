@@ -17,4 +17,16 @@ module Vimmer
   module_function :settings
 
 
+  def add_plugin(name, path)
+    settings.add_plugin(name, path)
+  end
+  module_function :add_plugin
+
+
+  def plugins
+    settings.plugins
+  end
+  module_function :plugins
+
+
 end

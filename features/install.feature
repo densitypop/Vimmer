@@ -2,7 +2,7 @@ Feature: Install plugin
 
   Background:
     Given a directory named ".vimmer"
-    And a file named "config" with:
+    And a file named ".vimmer/config" with:
     """
     bundle_path: "tmp/aruba/bundle"
     """
@@ -16,7 +16,7 @@ Feature: Install plugin
   Scenario: Install from Github with bad URL
     Given I have no plugins installed
     When I run "vimmer install \"https://github.com/tpope/not-found.git\""
-    Then a plugin named "not-found" should not be installed
+    Then I should still not have any plugins installed
     And it should fail with:
     """
     The plugin not-found could not be found
