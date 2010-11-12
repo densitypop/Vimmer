@@ -9,7 +9,7 @@ module Vimmer
       begin
         installer = Vimmer::Installers::Github.new(path)
         installer.install
-      rescue
+      rescue Vimmer::PluginNotFoundError
         $stderr.puts "The plugin #{installer.plugin_name} could not be found"
         exit 1
       end

@@ -8,7 +8,7 @@ describe "When installing from Github" do
     let(:installer) { Github.new("https://github.com/tpope/not-found.git") }
 
     specify "the installer should raise an exception" do
-      lambda { installer.install }.should raise_error("Not found")
+      lambda { installer.install }.should raise_error(Vimmer::PluginNotFoundError)
     end
 
   end

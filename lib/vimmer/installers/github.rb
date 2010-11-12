@@ -12,7 +12,7 @@ module Vimmer
 
       def install
         if path =~ /not-found/
-          raise "Not found"
+          raise Vimmer::PluginNotFoundError
         else
           Vimmer.add_plugin(plugin_name, path)
           puts "vim-awesomemofo has been installed"

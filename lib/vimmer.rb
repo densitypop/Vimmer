@@ -5,6 +5,8 @@ module Vimmer
   autoload :PluginPath,   'vimmer/plugin_path'
   autoload :Plugin,       'vimmer/plugin'
 
+  class PluginNotFoundError < StandardError; end
+
   def bundle_path
     settings[:bundle_path]
   end
