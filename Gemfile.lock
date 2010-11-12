@@ -10,6 +10,10 @@ GEM
     aruba (0.2.4)
       background_process
       cucumber (~> 0.9.3)
+    autotest (4.4.2)
+    autotest-fsevent (0.2.3)
+      sys-uname
+    autotest-growl (0.2.6)
     background_process (1.2)
     builder (2.1.2)
     cucumber (0.9.4)
@@ -19,6 +23,7 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     diff-lcs (1.1.2)
+    fakefs (0.2.1)
     gherkin (2.2.9)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
@@ -34,6 +39,7 @@ GEM
     rspec-mocks (2.0.1)
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
+    sys-uname (0.8.4)
     term-ansicolor (1.0.5)
     thor (0.14.4)
 
@@ -42,8 +48,12 @@ PLATFORMS
 
 DEPENDENCIES
   aruba
+  autotest
+  autotest-fsevent
+  autotest-growl
   bundler (>= 1.0.0)
   cucumber
+  fakefs
   rr
   rspec (~> 2.0.0)
   thor
