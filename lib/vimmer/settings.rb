@@ -1,3 +1,6 @@
+require 'pathname'
+require 'yaml'
+
 module Vimmer
   class Settings
 
