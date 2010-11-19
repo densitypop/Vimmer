@@ -3,16 +3,17 @@ module Vimmer
 
 
     def initialize
-      @config = if File.exist?(config_file)
-                  YAML.load_file(config_file)
-                else
-                  {}
-                end
+      @config = load_config(config_file)
     end
 
 
     def [](key)
-      @config[key.to_s]
+      value = @config[key.to_s]
+      if value && (File.directory?(value) || File.file?(value))
+        Pathname.new(value)
+      else
+        value
+      end
     end
 
 
@@ -38,12 +39,11 @@ module Vimmer
 
 
     def plugins
-      @plugins = if File.exist?(plugin_store_file.to_s)
-                     read_from_manifest
-                   else
+      @plugins = if !File.exist?(plugin_store_file.to_s)
                      write_to_manifest({})
-                     read_from_manifest
                    end
+
+      read_from_manifest
     end
 
 
@@ -54,6 +54,14 @@ module Vimmer
     def write_to_manifest(hash)
       File.open(plugin_store_file.to_s, "w") do |f|
         f << hash.to_yaml
+      end
+    end
+
+    def load_config(config_file)
+      if File.exist?(config_file)
+        YAML.load_file(config_file)
+      else
+        {}
       end
     end
 

@@ -4,7 +4,7 @@ Then /^a plugin named "([^"]*)" should be installed$/ do |name|
 end
 
 Then /^I should still not have any plugins installed$/ do
-  @vimmer.installed_plugins.should be_empty
+  @vimmer.installed_plugins.length.should == 0
   @vimmer.plugin_store.should == {}
 end
 

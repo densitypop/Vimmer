@@ -2,10 +2,7 @@ Feature: Install plugin
 
   Background:
     Given a directory named ".vimmer"
-    And a file named ".vimmer/config" with:
-    """
-    bundle_path: "tmp/aruba/bundle"
-    """
+    And a bundle path set for my system
 
   Scenario: Install from Github
     Given I have no plugins installed

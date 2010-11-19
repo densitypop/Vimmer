@@ -1,0 +1,10 @@
+#!/bin/bash
+# $1    $2                                           $3
+# clone https://github.com/tpope/vim-awesomemofo.git tmp/aruba/bundle
+
+if [ $1 == "clone" ]; then
+  mkdir -p $3
+else
+  echo "delegating to git"
+  /usr/local/git/bin/git $*
+fi

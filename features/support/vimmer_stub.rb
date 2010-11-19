@@ -1,7 +1,14 @@
 class VimmerStub
 
   def installed_plugins
-    plugin_store.map{ |name,path| name }
+    bundle_path.entries.map do |entry|
+      next if entry.to_s =~ /^\.\.?$/
+
+      entry = bundle_path.join(entry)
+      if entry.directory?
+        entry.split.last.to_s
+      end
+    end.compact
   end
 
 
@@ -13,9 +20,13 @@ class VimmerStub
     end
   end
 
-
   def plugin_store_file
     Pathname.new("tmp/aruba/.vimmer/plugins.yml")
+  end
+
+
+  def bundle_path
+    Pathname.new("tmp/aruba/bundle")
   end
 
 end
