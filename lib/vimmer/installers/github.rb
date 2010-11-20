@@ -14,7 +14,7 @@ module Vimmer
         if path_exists?
           git_clone(path, File.join(Vimmer.bundle_path, plugin_name))
           Vimmer.add_plugin(plugin_name, path)
-          puts "vim-awesomemofo has been installed"
+          puts "#{plugin_name} has been installed"
         else
           raise Vimmer::PluginNotFoundError
         end
