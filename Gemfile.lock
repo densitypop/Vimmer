@@ -24,6 +24,10 @@ GEM
       term-ansicolor (~> 1.0.5)
     diff-lcs (1.1.2)
     fakefs (0.2.1)
+    fuubar (0.0.2)
+      rspec (~> 2.0)
+      rspec-instafail (~> 0.1.4)
+      ruby-progressbar (~> 0.0.9)
     gherkin (2.2.9)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
@@ -36,9 +40,11 @@ GEM
     rspec-core (2.0.1)
     rspec-expectations (2.0.1)
       diff-lcs (>= 1.1.2)
+    rspec-instafail (0.1.4)
     rspec-mocks (2.0.1)
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
+    ruby-progressbar (0.0.9)
     sys-uname (0.8.4)
     term-ansicolor (1.0.5)
     thor (0.14.4)
@@ -54,6 +60,7 @@ DEPENDENCIES
   bundler (>= 1.0.0)
   cucumber
   fakefs
+  fuubar
   rr
   rspec (~> 2.0.0)
   thor

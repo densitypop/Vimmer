@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", "~> 2.0.0"
   s.add_development_dependency "cucumber"
   s.add_development_dependency "autotest"
+  s.add_development_dependency "fuubar"
   s.add_development_dependency "fakefs"
   s.add_development_dependency "aruba"
   s.add_development_dependency "rr"
