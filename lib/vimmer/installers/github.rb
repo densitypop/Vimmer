@@ -11,13 +11,18 @@ module Vimmer
 
 
       def install
-        if path =~ /not-found/
-          raise Vimmer::PluginNotFoundError
-        else
+        if path_exists?
           git_clone(path, File.join(Vimmer.bundle_path, plugin_name))
           Vimmer.add_plugin(plugin_name, path)
           puts "vim-awesomemofo has been installed"
+        else
+          raise Vimmer::PluginNotFoundError
         end
+      end
+
+
+      def path_exists?
+        `curl --head -w %{http_code} -o /dev/null #{path} 2> /dev/null`.chomp == "200"
       end
 
 

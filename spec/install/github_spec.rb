@@ -3,11 +3,15 @@ require 'spec_helper'
 describe "When installing from Github" do
   include Vimmer::Installers
 
+  FOUND_URL = "https://github.com/tpope/vim-awesomemofo.git"
+  NOT_FOUND_URL = "https://github.com/tpope/not-found.git"
+
   context "with a non-existant URL" do
 
-    let(:installer) { Github.new("https://github.com/tpope/not-found.git") }
+    let(:installer) { Github.new(NOT_FOUND_URL) }
 
     before do
+      stub(installer).path_exists? { false }
       stub(installer).git_clone
     end
 
@@ -19,10 +23,11 @@ describe "When installing from Github" do
 
   context "with a good URL" do
 
-    let(:installer) { Github.new("https://github.com/tpope/vim-awesomemofo.git") }
+    let(:installer) { Github.new(FOUND_URL) }
 
     before do
       stub(installer).git_clone
+      stub(installer).path_exists? { true }
     end
 
     specify "the installer should not raise an exception" do
@@ -46,25 +51,26 @@ describe "When installing from Github" do
   end
 
   it "provides access to the path" do
-    Github.new("https://github.com/tpope/vim-awesomemofo.git").
-      path.should == "https://github.com/tpope/vim-awesomemofo.git"
+    Github.new(FOUND_URL).
+      path.should == FOUND_URL
   end
 
   it "adds plugin to list of installed plugins" do
 
-    installer = Github.new("https://github.com/tpope/vim-awesomemofo.git")
+    installer = Github.new(FOUND_URL)
 
+    stub(installer).path_exists? { true }
     stub(installer).git_clone
 
     installer.install
 
-    Vimmer.plugins["vim-awesomemofo"].should == "https://github.com/tpope/vim-awesomemofo.git"
+    Vimmer.plugins["vim-awesomemofo"].should == FOUND_URL
 
   end
 
   it "installs the plugin" do
 
-    installer = Github.new("https://github.com/tpope/vim-awesomemofo.git")
+    installer = Github.new(FOUND_URL)
 
     stub(Vimmer).bundle_path do
       Pathname.new("tmp/bundle")
@@ -74,6 +80,8 @@ describe "When installing from Github" do
       FileUtils.mkdir_p(Vimmer.bundle_path.join("vim-awesomemofo", "plugins"))
       FileUtils.touch(Vimmer.bundle_path.join("vim-awesomemofo", "plugins", "vim-awesomemofo.vim"))
     end
+
+    stub(installer).path_exists? { true }
 
     installer.install
 

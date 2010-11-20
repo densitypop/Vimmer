@@ -1,0 +1,11 @@
+#!/bin/bash
+
+args=$#
+url=${!args}
+
+if echo $url | grep "not-found"
+then
+  echo 404
+else
+  echo 200
+fi
