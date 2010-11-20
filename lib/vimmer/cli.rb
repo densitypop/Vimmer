@@ -9,6 +9,9 @@ module Vimmer
       begin
         installer = Vimmer::Installers::Github.new(path)
         installer.install
+      rescue Vimmer::InvalidPathError => e
+        $stderr.puts "The URL #{e.path} is invalid."
+        exit 1
       rescue Vimmer::PluginNotFoundError
         $stderr.puts "The plugin #{installer.plugin_name} could not be found"
         exit 1

@@ -18,3 +18,12 @@ Feature: Install plugin
     """
     The plugin not-found could not be found
     """
+
+  Scenario: Install from Github with a non-Github URL
+    Given I have no plugins installed
+    When I run "vimmer install \"http://example.com/bad\""
+    Then I should still not have any plugins installed
+    And it should fail with:
+    """
+    The URL http://example.com/bad is invalid.
+    """

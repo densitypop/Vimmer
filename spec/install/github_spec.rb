@@ -45,7 +45,7 @@ describe "When installing from Github" do
     subject { Github.new("https://foo.com/bar") }
 
     specify "the installer should raise an exception" do
-      lambda { subject }.should raise_error("Invalid URL")
+      lambda { subject }.should raise_error(Vimmer::InvalidPathError)
     end
 
   end
