@@ -1,7 +1,8 @@
 require 'spec_helper'
 
+include Vimmer::Installers
+
 describe "When installing from Github" do
-  include Vimmer::Installers
 
   FOUND_URL = "https://github.com/tpope/vim-awesomemofo.git"
   NOT_FOUND_URL = "https://github.com/tpope/not-found.git"
