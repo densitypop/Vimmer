@@ -12,3 +12,8 @@ RSpec::Core::RakeTask.new(:spec)
 
 task :default => [:features, :spec]
 
+namespace :relish do
+  task :push do
+    `relish push joefiorini/vimmer`
+  end
+end
