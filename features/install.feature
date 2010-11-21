@@ -33,3 +33,11 @@ Feature: Install plugin
     When I successfully run "vimmer install 'https://github.com/tpope/vim-awesomemofo.git'"
     And I successfully run "vimmer uninstall 'vim-awesomemofo'"
     Then I should still not have any plugins installed
+
+  Scenario: Attempt to uninstall a plugin that is not installed
+    Given I have no plugins installed
+    When I run "vimmer uninstall not_installed"
+    Then it should fail with:
+    """
+    The plugin not_installed is not installed.
+    """

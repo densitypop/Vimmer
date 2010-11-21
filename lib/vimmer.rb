@@ -39,6 +39,11 @@ module Vimmer
   module_function :remove_plugin
 
 
+  def plugin?(name)
+    plugins.key?(name)
+  end
+  module_function :plugin?
+
   def plugins
     settings.plugins
   end

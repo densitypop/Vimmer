@@ -21,6 +21,10 @@ module Vimmer
 
     desc "uninstall NAME", "Removes plugin named NAME"
     def uninstall(name)
+      unless Vimmer.plugin?(name)
+        $stderr.puts "The plugin #{name} is not installed."
+        exit 1
+      end
       installer = Vimmer::Installers::Github.new(:name => name)
       installer.uninstall
     end
