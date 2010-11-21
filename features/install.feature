@@ -27,3 +27,9 @@ Feature: Install plugin
     """
     The URL http://example.com/bad is invalid.
     """
+
+  Scenario: Uninstall from Github
+    Given I have no plugins installed
+    When I successfully run "vimmer install 'https://github.com/tpope/vim-awesomemofo.git'"
+    And I successfully run "vimmer uninstall 'vim-awesomemofo'"
+    Then I should still not have any plugins installed

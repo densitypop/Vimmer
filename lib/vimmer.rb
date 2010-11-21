@@ -33,6 +33,12 @@ module Vimmer
   module_function :add_plugin
 
 
+  def remove_plugin(name)
+    settings.remove_plugin(name)
+  end
+  module_function :remove_plugin
+
+
   def plugins
     settings.plugins
   end

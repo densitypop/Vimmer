@@ -40,6 +40,12 @@ module Vimmer
       write_to_manifest(existing_plugins)
     end
 
+    def remove_plugin(name)
+      existing_plugins = plugins.dup
+      existing_plugins.delete(name)
+
+      write_to_manifest(existing_plugins)
+    end
 
     def plugins
       @plugins = if !File.exist?(plugin_store_file.to_s)

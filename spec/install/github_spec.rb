@@ -8,7 +8,7 @@ describe "When installing from Github" do
 
   context "with a non-existant URL" do
 
-    let(:installer) { Github.new(NOT_FOUND_URL) }
+    let(:installer) { Github.new(:path => NOT_FOUND_URL) }
 
     before do
       stub(installer).path_exists? { false }
@@ -23,7 +23,7 @@ describe "When installing from Github" do
 
   context "with a good URL" do
 
-    let(:installer) { Github.new(FOUND_URL) }
+    let(:installer) { Github.new(:path => FOUND_URL) }
 
     before do
       stub(installer).git_clone
@@ -42,7 +42,7 @@ describe "When installing from Github" do
 
   context "with a malformed URL" do
 
-    subject { Github.new("https://foo.com/bar") }
+    subject { Github.new(:path => "https://foo.com/bar") }
 
     specify "the installer should raise an exception" do
       lambda { subject }.should raise_error(Vimmer::InvalidPathError)
@@ -51,13 +51,13 @@ describe "When installing from Github" do
   end
 
   it "provides access to the path" do
-    Github.new(FOUND_URL).
+    Github.new(:path => FOUND_URL).
       path.should == FOUND_URL
   end
 
   it "adds plugin to list of installed plugins" do
 
-    installer = Github.new(FOUND_URL)
+    installer = Github.new(:path => FOUND_URL)
 
     stub(installer).path_exists? { true }
     stub(installer).git_clone
@@ -68,9 +68,7 @@ describe "When installing from Github" do
 
   end
 
-  it "installs the plugin" do
-
-    installer = Github.new(FOUND_URL)
+  def stub_for_install!(installer)
 
     stub(Vimmer).bundle_path do
       Pathname.new("tmp/bundle")
@@ -83,12 +81,36 @@ describe "When installing from Github" do
 
     stub(installer).path_exists? { true }
 
+  end
+
+
+  it "installs the plugin" do
+
+    installer = Github.new(:path => FOUND_URL)
+
+    stub_for_install! installer
+
     installer.install
 
     plugin_path = Vimmer.bundle_path.join("vim-awesomemofo")
     File.directory?(plugin_path.to_s).should be_true
     File.directory?(plugin_path.join("plugins").to_s).should be_true
     File.file?(plugin_path.join("plugins", "vim-awesomemofo.vim")).should be_true
+  end
+
+  it "uninstalls the plugin" do
+
+    installer = Github.new(:name => "vim-awesomemofo")
+
+    stub_for_install! installer
+
+    installer.install
+
+    installer.uninstall
+
+    plugin_path = Vimmer.bundle_path.join("vim-awesomemofo")
+    File.directory?(plugin_path.to_s).should be_false
+    File.directory?(plugin_path.join("plugins").to_s).should be_false
   end
 
 

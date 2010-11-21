@@ -7,7 +7,7 @@ module Vimmer
     desc "install PATH", "Installs plugin available at path PATH"
     def install(path)
       begin
-        installer = Vimmer::Installers::Github.new(path)
+        installer = Vimmer::Installers::Github.new(:path => path)
         installer.install
       rescue Vimmer::InvalidPathError => e
         $stderr.puts "The URL #{e.path} is invalid."
@@ -17,6 +17,20 @@ module Vimmer
         exit 1
       end
     end
+
+
+    desc "uninstall NAME", "Removes plugin named NAME"
+    def uninstall(name)
+      installer = Vimmer::Installers::Github.new(:name => name)
+      installer.uninstall
+    end
+
+
+    def method_missing(name, *args)
+      $stderr.puts 'Could not find command "%s".' % name
+      exit 1
+    end
+
 
   end
 end
