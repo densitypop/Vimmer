@@ -7,9 +7,9 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    aruba (0.2.4)
+    aruba (0.2.6)
       background_process
-      cucumber (~> 0.9.3)
+      cucumber (~> 0.9.4)
     autotest (4.4.2)
     autotest-fsevent (0.2.3)
       sys-uname
