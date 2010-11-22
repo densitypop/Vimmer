@@ -5,7 +5,7 @@ Vimmer makes it easy to install, remove and update Vim plugins from the followin
 - Github
 - Vim.org (coming soon)
 
-  N.B. Vimmer is a work in process. This is an early alpha release for those who want to give it a try and are willing to submit feedback. I am offering it with NO GUARANTEES. If you're still with me, you can submit your feedback at [https://github.com/densitypop/Vimmer/issues](https://github.com/densitypop/Vimmer/issues). Thank you!
+N.B. Vimmer is a work in process. This is an early alpha release for those who want to give it a try and are willing to submit feedback. I am offering it with NO GUARANTEES. If you're still with me, you can submit your feedback at [https://github.com/densitypop/Vimmer/issues](https://github.com/densitypop/Vimmer/issues). Thank you!
 
 ## Installation and Usage ##
 
