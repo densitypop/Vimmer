@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vimmer (0.0.1)
+    vimmer (0.1.0)
       thor
 
 GEM
