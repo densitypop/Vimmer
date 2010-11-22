@@ -3,3 +3,9 @@ Given /^a bundle path set for my system$/ do
   Given 'a file named ".vimmer/config" with:', "bundle_path: #{bundle_path}"
 end
 
+Given /^no directory named "([^"]*)"$/ do |directory|
+  in_current_dir do
+    FileUtils.rm_rf(directory)
+  end
+end
+

@@ -33,6 +33,23 @@ module Vimmer
     end
 
 
+    def create_vimmer_home!
+      FileUtils.mkdir_p(config_root.to_s)
+    end
+
+
+    def create_default_config_file!
+      write_default_config_file
+      @config = load_config(config_file)
+    end
+
+    def write_default_config_file
+      File.open(config_file.to_s, "w") do |f|
+        f << "bundle_path: ~/.vim/bundle"
+      end
+    end
+
+
     def add_plugin(name, path)
       existing_plugins = plugins.dup
       existing_plugins.merge!(name => path)

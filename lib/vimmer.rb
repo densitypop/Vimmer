@@ -50,4 +50,11 @@ module Vimmer
   module_function :plugins
 
 
+  def setup
+    settings.create_vimmer_home!
+    settings.create_default_config_file!
+  end
+  module_function :setup
+
+
 end

@@ -6,6 +6,7 @@ module Vimmer
 
     desc "install PATH", "Installs plugin available at path PATH"
     def install(path)
+      setup
       begin
         installer = Vimmer::Installers::Github.new(:path => path)
         installer.install
@@ -27,6 +28,12 @@ module Vimmer
       end
       installer = Vimmer::Installers::Github.new(:name => name)
       installer.uninstall
+    end
+
+    private
+
+    def setup
+      Vimmer.setup
     end
 
 
