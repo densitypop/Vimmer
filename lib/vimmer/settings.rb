@@ -39,6 +39,7 @@ module Vimmer
 
 
     def create_default_config_file!
+      return if File.exist?(config_file.to_s)
       write_default_config_file
       @config = load_config(config_file)
     end

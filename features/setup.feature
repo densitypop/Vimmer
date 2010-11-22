@@ -1,4 +1,3 @@
-@announce
 Feature: Setup
 
   Scenario: Run without .vimmer directory
@@ -7,7 +6,6 @@ Feature: Setup
     Then a directory named ".vimmer" should exist
     And the file ".vimmer/config" should contain "bundle_path: ~/.vim/bundle"
 
-  @backlog
   Scenario: Run with .vimmer directory (doesn't overwrite)
     Given a directory named ".vimmer"
     And a file named ".vimmer/config" with:
