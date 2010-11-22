@@ -30,7 +30,7 @@ module Vimmer
 
 
       def path_exists?
-        `curl --head -w %{http_code} -o /dev/null #{path} 2> /dev/null`.chomp == "200"
+        `curl --head -w %{http_code} -o /dev/null #{remove_extension(path)} 2> /dev/null`.chomp == "200"
       end
 
 
@@ -51,6 +51,10 @@ module Vimmer
       def initialize_with_name(name)
         @path = Vimmer.plugins[name]
         @plugin_name = name
+      end
+
+      def remove_extension(path)
+        path.gsub(/\.git$/, '')
       end
 
     end
