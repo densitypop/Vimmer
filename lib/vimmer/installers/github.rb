@@ -24,8 +24,14 @@ module Vimmer
 
 
       def uninstall
-        FileUtils.rm_rf(File.join(Vimmer.bundle_path, plugin_name))
-        Vimmer.remove_plugin(plugin_name)
+        plugin_path = File.join(Vimmer.bundle_path, plugin_name)
+        if File.directory? plugin_path
+          FileUtils.rm_rf(plugin_path)
+          Vimmer.remove_plugin(plugin_name)
+          puts "#{plugin_name} has been uninstalled"
+        else
+          raise Vimmer::PluginNotFoundError
+        end
       end
 
 
