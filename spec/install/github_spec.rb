@@ -12,8 +12,8 @@ describe "When installing from Github" do
     let(:installer) { Github.new(:path => NOT_FOUND_URL) }
 
     before do
-      stub(installer).path_exists? { false }
-      stub(installer).git_clone
+      installer.stubs(:path_exists?).returns(false)
+      installer.stubs(:git_clone)
     end
 
     specify "the installer should raise an exception" do
@@ -27,8 +27,8 @@ describe "When installing from Github" do
     let(:installer) { Github.new(:path => FOUND_URL) }
 
     before do
-      stub(installer).git_clone
-      stub(installer).path_exists? { true }
+      installer.stubs(:git_clone)
+      installer.stubs(:path_exists?).returns(true)
     end
 
     specify "the installer should not raise an exception" do
@@ -60,8 +60,8 @@ describe "When installing from Github" do
 
     installer = Github.new(:path => FOUND_URL)
 
-    stub(installer).path_exists? { true }
-    stub(installer).git_clone
+    installer.stubs(:path_exists?).returns(true)
+    installer.stubs(:git_clone)
 
     installer.install
 
@@ -71,16 +71,16 @@ describe "When installing from Github" do
 
   def stub_for_install!(installer)
 
-    stub(Vimmer).bundle_path do
-      Pathname.new("tmp/bundle")
+    Vimmer.stubs(:bundle_path).returns(Pathname.new("tmp/bundle"))
+
+    class << installer
+      def git_clone(arg1, arg2)
+        FileUtils.mkdir_p(Vimmer.bundle_path.join("vim-awesomemofo", "plugins"))
+        FileUtils.touch(Vimmer.bundle_path.join("vim-awesomemofo", "plugins", "vim-awesomemofo.vim"))
+      end
     end
 
-    stub(installer).git_clone do
-      FileUtils.mkdir_p(Vimmer.bundle_path.join("vim-awesomemofo", "plugins"))
-      FileUtils.touch(Vimmer.bundle_path.join("vim-awesomemofo", "plugins", "vim-awesomemofo.vim"))
-    end
-
-    stub(installer).path_exists? { true }
+    installer.stubs(:path_exists?).returns true
 
   end
 

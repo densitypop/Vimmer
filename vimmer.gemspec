@@ -23,7 +23,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "fuubar"
   s.add_development_dependency "fakefs"
   s.add_development_dependency "aruba"
-  s.add_development_dependency "rr"
+  s.add_development_dependency "mocha"
+  s.add_development_dependency "bourne"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
