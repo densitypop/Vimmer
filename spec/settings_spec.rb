@@ -23,4 +23,19 @@ describe ".vimmer/" do
     File.read(settings.config_file).should =~ /bundle_path: ~\/.vim\/bundle/
   end
 
+
+  it "expands the path when calling bundle_path" do
+    ENV['VIMMER_HOME'] = vimmer_home.to_s
+
+    bundle_path = app_root.join("lib", "..", "tmp", "bundle")
+    File.open(vimmer_home.join("config").to_s, "w") do |f|
+      f << "bundle_path: #{bundle_path}"
+    end
+
+    Vimmer::Settings.new[:bundle_path].should == File.expand_path(bundle_path)
+
+    ENV['VIMMER_HOME'] = nil
+  end
+
+
 end

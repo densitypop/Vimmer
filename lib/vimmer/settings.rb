@@ -6,13 +6,13 @@ module Vimmer
 
 
     def initialize
-      @config = load_config(config_file)
+      @config = defaults.merge(load_config(config_file))
     end
 
 
     def [](key)
-      value = @config[key.to_s]
-      if value && (File.directory?(value) || File.file?(value))
+      value = File.expand_path(@config[key.to_s])
+      if value && File.exists?(value)
         Pathname.new(value)
       else
         value
@@ -85,11 +85,17 @@ module Vimmer
     end
 
     def load_config(config_file)
-      if File.exist?(config_file)
+      config_file = File.expand_path(config_file)
+      if config_file && File.exist?(config_file.to_s)
         YAML.load_file(config_file)
       else
         {}
       end
+    end
+
+
+    def defaults
+      { "bundle_path" => "~/.vim/bundle" }
     end
 
   end

@@ -15,7 +15,11 @@ RSpec.configure do |config|
   config.mock_with :mocha
 
   def app_root
-    Pathname.new(File.join(__FILE__, "..", "tmp", ".vimmer"))
+    Pathname.new(File.join(File.dirname(__FILE__), ".."))
+  end
+
+  def vimmer_home
+    app_root.join("tmp", ".vimmer")
   end
 
 
