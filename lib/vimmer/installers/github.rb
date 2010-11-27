@@ -1,5 +1,10 @@
 module Vimmer
   module Installers
+
+    GITHUB_GIT_PATH_TEMPLATE = "https://github.com/%s/%s.git"
+    GITHUB_GIT_URL_PATTERN = %r{^https://github.com/[a-zA-Z0-9\-_\+%]+/([a-zA-Z0-9\-_\+]+).git$}
+    GITHUB_PUBLIC_URL_PATTERN = %r{^http://github.com/([a-zA-Z0-9\-_\+%]+)/([a-zA-Z0-9\-_\+]+)$}
+
     class Github
       attr_reader :path, :plugin_name
 
@@ -48,7 +53,11 @@ module Vimmer
 
 
       def initialize_with_path(path)
-        raise Vimmer::InvalidPathError.new(path) unless path =~ %r{^https://github.com/[a-zA-Z0-9\-_\+%]+/([a-zA-Z0-9\-_\+]+).git$}
+
+        path = public_path_to_git_path($1, $2) if path =~ GITHUB_PUBLIC_URL_PATTERN
+
+        raise Vimmer::InvalidPathError.new(path) unless path =~ GITHUB_GIT_URL_PATTERN
+
         @plugin_name = $1
         @path = path
       end
@@ -59,8 +68,14 @@ module Vimmer
         @plugin_name = name
       end
 
+
       def remove_extension(path)
         path.gsub(/\.git$/, '')
+      end
+
+
+      def public_path_to_git_path(user, repo)
+        GITHUB_GIT_PATH_TEMPLATE % [user, repo]
       end
 
     end

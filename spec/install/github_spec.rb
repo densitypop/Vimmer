@@ -69,6 +69,14 @@ describe "When installing from Github" do
 
   end
 
+  context "with a public facing Github url" do
+
+    subject { Github.new(:path => "http://github.com/tpope/vim-awesomemofo") }
+
+    its(:path) { should == FOUND_URL }
+
+  end
+
   def stub_for_install!(installer)
 
     Vimmer.stubs(:bundle_path).returns(Pathname.new("tmp/bundle"))

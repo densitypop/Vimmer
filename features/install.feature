@@ -25,3 +25,8 @@ Feature: Install plugin
     """
     The URL http://example.com/bad is invalid.
     """
+
+  Scenario: Install from Github with a front-end Github URL
+    When I successfully run "vimmer install 'http://github.com/tpope/vim-awesomemofo'"
+    Then a plugin named "vim-awesomemofo" should be installed
+    And the stdout should contain "vim-awesomemofo has been installed"
