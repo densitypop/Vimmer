@@ -21,6 +21,10 @@ Vimmer depends on the Pathogen plugin for managing Vim's runtime path. Using Pat
 
 Restart Vim and you're done! For details on installing Pathogen see [Pathogen on Vim.org](http://www.vim.org/scripts/script.php?script_id=2332). Note: I am planning to automatically setup Pathogen during the Vimmer install process.
 
+### Documentation ###
+
+Vimmer is documented using Cucumber features and hosted on [Relish](http://www.relishapp.com). [View the documentation.](http://relishapp.com/joefiorini/vimmer)
+
 ## Contributing to Vimmer ##
 
 1. Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
