@@ -29,7 +29,7 @@ Vimmer is documented using Cucumber features and hosted on [Relish](http://www.r
 
 1. Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 2. Check out the [issue tracker](http://github.com/densitypop/Vimmer/issues) to make sure someone already hasn't requested it and/or contributed it
-3. Fork the project
+3. Fork the project; make sure you're working in your own branch off the develop branch
 4. Write some tests/Cukes; implement until you're happy. This is important to make sure I don't accidentally break your fix in the future
 5. Send me a pull request
 
