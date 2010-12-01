@@ -30,3 +30,10 @@ Feature: Install plugin
     When I successfully run "vimmer install 'http://github.com/tpope/vim-awesomemofo'"
     Then a plugin named "vim-awesomemofo" should be installed
     And the stdout should contain "vim-awesomemofo has been installed"
+
+  Scenario: Accept URLs with a "."
+    When I run "vimmer install 'http://github.com/tpope/awesomemofo.vim'"
+    Then it should pass with:
+    """
+    awesomemofo.vim has been installed
+    """

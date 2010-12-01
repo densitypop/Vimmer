@@ -2,8 +2,8 @@ module Vimmer
   module Installers
 
     GITHUB_GIT_PATH_TEMPLATE = "https://github.com/%s/%s.git"
-    GITHUB_GIT_URL_PATTERN = %r{^https://github.com/[a-zA-Z0-9\-_\+%]+/([a-zA-Z0-9\-_\+]+).git$}
-    GITHUB_PUBLIC_URL_PATTERN = %r{^http://github.com/([a-zA-Z0-9\-_\+%]+)/([a-zA-Z0-9\-_\+]+)$}
+    GITHUB_GIT_URL_PATTERN = %r{^https://github.com/[a-zA-Z0-9\-_\+%]+/([a-zA-Z0-9\-_\+\.]+).git$}
+    GITHUB_PUBLIC_URL_PATTERN = %r{^http://github.com/([a-zA-Z0-9\-_\+%]+)/([a-zA-Z0-9\-_\+\.]+)$}
 
     class Github
       attr_reader :path, :plugin_name
