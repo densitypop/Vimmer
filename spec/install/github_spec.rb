@@ -77,6 +77,42 @@ describe "When installing from Github" do
 
   end
 
+  it "installs the plugin" do
+
+    installer = Github.new(:path => FOUND_URL)
+
+    stub_for_install! installer
+
+    installer.install
+
+    plugin_path = Vimmer.bundle_path.join("vim-awesomemofo")
+
+
+    File.directory?(plugin_path.to_s).should be_true
+    File.directory?(plugin_path.join("plugins").to_s).should be_true
+    File.file?(plugin_path.join("plugins", "vim-awesomemofo.vim")).should be_true
+
+  end
+
+  it "uninstalls the plugin" do
+
+    installer = Github.new(:name => "vim-awesomemofo")
+
+
+    stub_for_install! installer
+
+    installer.install
+
+    installer.uninstall
+
+    plugin_path = Vimmer.bundle_path.join("vim-awesomemofo")
+    File.directory?(plugin_path.to_s).should be_false
+    File.directory?(plugin_path.join("plugins").to_s).should be_false
+  end
+
+
+  private
+
   def stub_for_install!(installer)
 
     Vimmer.stubs(:bundle_path).returns(Pathname.new("tmp/bundle"))
@@ -92,35 +128,5 @@ describe "When installing from Github" do
 
   end
 
-
-  it "installs the plugin" do
-
-    installer = Github.new(:path => FOUND_URL)
-
-    stub_for_install! installer
-
-    installer.install
-
-    plugin_path = Vimmer.bundle_path.join("vim-awesomemofo")
-    File.directory?(plugin_path.to_s).should be_true
-    File.directory?(plugin_path.join("plugins").to_s).should be_true
-    File.file?(plugin_path.join("plugins", "vim-awesomemofo.vim")).should be_true
-  end
-
-  it "uninstalls the plugin" do
-
-    installer = Github.new(:name => "vim-awesomemofo")
-
-    stub_for_install! installer
-
-    installer.install
-
-    installer.uninstall
-
-    plugin_path = Vimmer.bundle_path.join("vim-awesomemofo")
-    File.directory?(plugin_path.to_s).should be_false
-    File.directory?(plugin_path.join("plugins").to_s).should be_false
-  end
-
-
 end
+
