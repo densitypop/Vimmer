@@ -26,7 +26,6 @@ Feature: Install plugin
     The URL http://example.com/bad is invalid.
     """
 
-    @wip
   Scenario Outline: Install from Github with a front-end Github URL
     When I successfully run "vimmer install '<URL>'"
     Then a plugin named "vim-awesomemofo" should be installed
