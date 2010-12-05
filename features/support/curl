@@ -3,10 +3,10 @@
 args=$#
 url=${!args}
 
-if echo $url | grep ".git$"
+if [[ $url =~ ".git$" ]]
 then
   echo 404
-elif echo $url | grep "not-found"
+elif [[ $url =~ "not-found" ]]
 then
   echo 404
 else
