@@ -1,0 +1,19 @@
+#!/bin/bash
+
+counter=1
+
+rake > /dev/null 2>&1
+
+while [[ $? -eq 0 ]]; do
+  echo "Count: $counter"
+  let counter=$counter+1
+  rake > /dev/null 2>&1
+done
+
+message="Ran $counter times before failure"
+
+if [[ $1 -eq "-s" ]]; then
+  say $message
+fi
+
+echo $message
