@@ -17,3 +17,4 @@ if [[ $1 -eq "-s" ]]; then
 fi
 
 echo $message
+echo "$message\n" >> log/failures.log
