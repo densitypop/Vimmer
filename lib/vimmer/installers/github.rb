@@ -45,6 +45,16 @@ module Vimmer
       end
 
 
+      def self.match?(url)
+        is_github_url?(url)
+      end
+
+      def self.is_github_url?(url)
+        !(GITHUB_PUBLIC_URL_PATTERN.match(url) ||
+          GITHUB_GIT_URL_PATTERN.match(url)).nil?
+      end
+
+
       private
 
       def git_clone(path, install_to)

@@ -8,8 +8,11 @@ module Vimmer
     def install(path)
       setup
       begin
-        installer = Vimmer::Installers::Github.new(:path => path)
+        installer = Vimmer::Installers.for_url(path).new(:path => path)
         installer.install
+      rescue Vimmer::InstallerNotFoundError => e
+        $stderr.puts "The URL #{e.path} is invalid."
+        exit 1
       rescue Vimmer::InvalidPathError => e
         $stderr.puts "The URL #{e.path} is invalid."
         exit 1

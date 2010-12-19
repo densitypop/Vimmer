@@ -6,6 +6,13 @@ describe "When installing from Github" do
 
   FOUND_URL = "https://github.com/tpope/vim-awesomemofo.git"
   NOT_FOUND_URL = "https://github.com/tpope/not-found.git"
+  MALFORMED_URL = "https://foo.com/bar"
+
+  RSpec::Matchers.define :be_a_valid_github_url do |expected|
+    match do
+      Github.match?(expected) == true
+    end
+  end
 
   context "with a non-existant URL" do
 
@@ -15,6 +22,8 @@ describe "When installing from Github" do
       installer.stubs(:path_exists?).returns(false)
       installer.stubs(:git_clone)
     end
+
+    it { should be_a_valid_github_url(NOT_FOUND_URL) }
 
     specify "the installer should raise an exception" do
       lambda { installer.install }.should raise_error(Vimmer::PluginNotFoundError)
@@ -31,6 +40,8 @@ describe "When installing from Github" do
       installer.stubs(:path_exists?).returns(true)
     end
 
+    it { should be_a_valid_github_url(FOUND_URL) }
+
     specify "the installer should not raise an exception" do
       lambda { installer.install }.should_not raise_error
     end
@@ -43,10 +54,13 @@ describe "When installing from Github" do
 
   context "with a malformed URL" do
 
-    subject { Github.new(:path => "https://foo.com/bar") }
+    let(:installer) { Github.new(:path => MALFORMED_URL) }
+
+
+    it { should_not be_a_valid_github_url(MALFORMED_URL) }
 
     specify "the installer should raise an exception" do
-      lambda { subject }.should raise_error(Vimmer::InvalidPathError)
+      lambda { installer }.should raise_error(Vimmer::InvalidPathError)
     end
 
   end
