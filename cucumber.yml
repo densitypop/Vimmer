@@ -1,4 +1,4 @@
-default: --format progress features
+default: --format progress features --tags ~@wip
 html_report: --format progress --format html --out=features_report.html features  
 wip: --tags @wip:1 --wip
 autotest: --color
