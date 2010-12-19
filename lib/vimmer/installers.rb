@@ -10,7 +10,7 @@ module Vimmer
       if Github.match?(url)
         Github
       elsif VimDotOrg.match?(url)
-        VimDotOrg
+        VimDotOrg.for_url(url)
       else
         raise Vimmer::InstallerNotFoundError.new(url)
       end

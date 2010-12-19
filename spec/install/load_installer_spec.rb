@@ -14,6 +14,10 @@ describe "When loading an installer by URL" do
 
   context "for a Vim.org URL" do
 
+    before do
+      Installers::VimDotOrg.stubs(:for_url).returns(Installers::VimDotOrg)
+    end
+
     subject { Installers.for_url("http://vim.org/scripts/script.php?script_id=1234") }
 
     it { should == Installers::VimDotOrg }

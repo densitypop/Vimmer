@@ -15,12 +15,14 @@ describe "When installing from vim.org" do
 
   context "with a non-existent URL" do
 
-    let(:installer) { VimDotOrg.new(:path => VDO_NOT_FOUND_URL) }
+    before do
+      VimDotOrg.stubs(:repository).returns({})
+    end
 
     it { should be_a_valid_url(VDO_NOT_FOUND_URL) }
 
     specify "the installer should raise an exception" do
-      lambda { installer.install }.should raise_error(Vimmer::PluginNotFoundError)
+      lambda { VimDotOrg.for_url(VDO_NOT_FOUND_URL) }.should raise_error(Vimmer::PluginNotFoundError)
     end
 
   end
@@ -34,19 +36,36 @@ describe "When installing from vim.org" do
 
   context "with a good URL" do
 
-    let(:installer) { VimDotOrg.new(:path => "http://www.vim.org/scripts/script.php?script_id=2975") }
+    before do
+      VimDotOrg.stubs(:repository).returns({"2975" => "fugitive.vim"})
+    end
+
+    let(:installer) { VimDotOrg.for_url("http://www.vim.org/scripts/script.php?script_id=2975") }
+
+    context "using the vim-scripts mirror" do
+
+      it "should return a Github installer" do
+        installer.should be_a(Github)
+      end
+
+      it "uses the Github path" do
+        installer.path.should == "https://github.com/vim-scripts/fugitive.vim.git"
+      end
+
+    end
 
     specify "the installer should not raise an exception" do
+
+      class << installer
+        def git_clone(arg1, arg2)
+        end
+      end
+
       lambda { installer.install }.should_not raise_error
     end
 
     specify "the installer calculates the plugin's name" do
-      pending
       installer.plugin_name.should == "fugitive.vim"
-    end
-
-    specify "provides access to the path" do
-      installer.path.should == "http://www.vim.org/scripts/script.php?script_id=2975"
     end
 
   end
