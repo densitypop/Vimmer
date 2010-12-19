@@ -7,9 +7,9 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    aruba (0.2.6)
+    aruba (0.2.7)
       background_process
-      cucumber (~> 0.9.4)
+      cucumber (~> 0.10.0)
     autotest (4.4.5)
     autotest-fsevent (0.2.3)
       sys-uname
@@ -17,11 +17,11 @@ GEM
     background_process (1.2)
     bourne (1.0)
       mocha (= 0.9.8)
-    builder (2.1.2)
-    cucumber (0.9.4)
-      builder (~> 2.1.2)
+    builder (3.0.0)
+    cucumber (0.10.0)
+      builder (>= 2.1.2)
       diff-lcs (~> 1.1.2)
-      gherkin (~> 2.2.9)
+      gherkin (~> 2.3.2)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     diff-lcs (1.1.2)
@@ -30,24 +30,22 @@ GEM
       rspec (~> 2.0)
       rspec-instafail (~> 0.1.4)
       ruby-progressbar (~> 0.0.9)
-    gherkin (2.2.9)
+    gherkin (2.3.2)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     json (1.4.6)
     mocha (0.9.8)
       rake
     rake (0.8.7)
-    rspec (2.0.1)
-      rspec-core (~> 2.0.1)
-      rspec-expectations (~> 2.0.1)
-      rspec-mocks (~> 2.0.1)
-    rspec-core (2.0.1)
-    rspec-expectations (2.0.1)
-      diff-lcs (>= 1.1.2)
+    rspec (2.3.0)
+      rspec-core (~> 2.3.0)
+      rspec-expectations (~> 2.3.0)
+      rspec-mocks (~> 2.3.0)
+    rspec-core (2.3.1)
+    rspec-expectations (2.3.0)
+      diff-lcs (~> 1.1.2)
     rspec-instafail (0.1.4)
-    rspec-mocks (2.0.1)
-      rspec-core (~> 2.0.1)
-      rspec-expectations (~> 2.0.1)
+    rspec-mocks (2.3.0)
     ruby-progressbar (0.0.9)
     sys-uname (0.8.4)
     term-ansicolor (1.0.5)
@@ -57,16 +55,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aruba
+  aruba (= 0.2.7)
   autotest
   autotest-fsevent
   autotest-growl
   bourne
   bundler (>= 1.0.0)
-  cucumber
+  cucumber (= 0.10.0)
   fakefs
   fuubar
   mocha
-  rspec (~> 2.0.0)
+  rspec (~> 2.3.0)
   thor
   vimmer!
