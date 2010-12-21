@@ -1,3 +1,4 @@
+require 'net/http'
 require 'json'
 
 module Vimmer
@@ -35,7 +36,7 @@ module Vimmer
       end
 
       def self.repository_uri
-        URI.parse("http://www.vim-scripts.org/api/script_ids.json")
+        URI.parse("http://vim-scripts.org/api/script_ids.json")
       end
 
 
