@@ -3,7 +3,7 @@
 Vimmer makes it easy to install, remove and update Vim plugins from the following sources:
 
 - Github
-- Vim.org (coming soon)
+- Vim.org
 
 N.B. Vimmer is a work in progress. This is an early alpha release for those who are willing to try it and submit feedback. I am offering it with NO GUARANTEES. If you're still with me, please submit your feedback at [https://github.com/densitypop/Vimmer/issues](https://github.com/densitypop/Vimmer/issues). Thank you!
 
@@ -18,6 +18,10 @@ Installing Vimmer is as simple as running:
 Vimmer depends on the Pathogen plugin for managing Vim's runtime path. Using Pathogen, Vimmer will install plugins into ~/.vim/bundle. Installing a plugin is as simple as running:
 
     vimmer install https://github.com/tpope/vim-fugitive.git
+
+To install a plugin, colorscheme or other script from vim.org use the URL to the script's page. For example:
+
+    vimmer install "http://www.vim.org/scripts/script.php?script_id=2501"
 
 Restart Vim and you're done! For details on installing Pathogen see [Pathogen on Vim.org](http://www.vim.org/scripts/script.php?script_id=2332). Note: I am planning to automatically setup Pathogen during the Vimmer install process.
 
