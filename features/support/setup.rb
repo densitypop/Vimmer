@@ -1,5 +1,6 @@
 require 'aruba/cucumber'
 require 'webmock'
+require 'pathname'
 require File.dirname(__FILE__) + '/stubbed_http_requests'
 
 ENV['RUBYOPT'] = "-r#{File.expand_path(File.join(File.dirname(__FILE__), 'stub-commands.rb'))} -rwebmock -r#{File.expand_path(File.join(File.dirname(__FILE__), 'stubbed_http_requests'))} #{ENV['RUBYOPT']}"
