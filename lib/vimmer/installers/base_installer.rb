@@ -33,7 +33,7 @@ module Vimmer
       end
 
       def path_exists?
-        `curl --head -w %{http_code} -o /dev/null #{remove_extension(path)} 2> /dev/null`.chomp == "200"
+        `curl --head -w %{http_code} -o /dev/null #{curl_url(path)} 2> /dev/null`.chomp == "200"
       end
 
       private
@@ -42,9 +42,18 @@ module Vimmer
         output = `git clone #{path} #{install_to}`
       end
 
+      def curl_url(path)
+        curl_path = remove_extension(path)
+        curl_path = make_protocol_http(curl_path)
+      end
+
       def remove_extension(path)
         path.gsub(/\.git$/, '')
-      end      
+      end     
+
+      def make_protocol_http(path)
+        path.gsub(%r{git://},'http://')
+      end
 
      def initialize_with_name(name)
         @path = Vimmer.plugins[name]
