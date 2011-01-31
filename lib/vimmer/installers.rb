@@ -2,10 +2,10 @@ module Vimmer
   module Installers
     extend self
 
-    autoload :Github,      'vimmer/installers/github'
-    autoload :GitUrl,      'vimmer/installers/git_url'
-    autoload :VimDotOrg,   'vimmer/installers/vim_dot_org'
-
+    autoload :BaseInstaller, 'vimmer/installers/base_installer'
+    autoload :Github,        'vimmer/installers/github'
+    autoload :GitUrl,        'vimmer/installers/git_url'
+    autoload :VimDotOrg,     'vimmer/installers/vim_dot_org'
 
     def for_url(url)
       if Github.match?(url)
