@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vimmer (0.1.0)
+    vimmer (0.2.0)
       thor
 
 GEM
@@ -71,6 +71,5 @@ DEPENDENCIES
   fuubar
   mocha
   rspec (~> 2.3.0)
-  thor
   vimmer!
   webmock

@@ -3,12 +3,15 @@ module Vimmer
     extend self
 
     autoload :Github,      'vimmer/installers/github'
+    autoload :GitUrl,      'vimmer/installers/git_url'
     autoload :VimDotOrg,   'vimmer/installers/vim_dot_org'
 
 
     def for_url(url)
       if Github.match?(url)
         Github
+      elsif GitUrl.match?(url)
+        GitUrl
       elsif VimDotOrg.match?(url)
         VimDotOrg.for_url(url)
       else

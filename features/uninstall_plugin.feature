@@ -10,6 +10,11 @@ Feature: Uninstall plugin
     And I successfully run "vimmer uninstall 'vim-awesomemofo'"
     Then I should still not have any plugins installed
 
+  Scenario: Uninstall from a git:// url
+    When I successfully run "vimmer install 'git://git.wincent.com/command-t.git'"
+    And I successfully run "vimmer uninstall 'command-t'"
+    Then I should still not have any plugins installed
+
   Scenario: Attempt to uninstall a plugin that is not installed
     When I run "vimmer uninstall not_installed"
     Then it should fail with:

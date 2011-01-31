@@ -10,7 +10,8 @@ module Vimmer
       begin
         installer = Vimmer::Installers.for_url(path)
         # TODO: Make this consistent with VimDotOrg installer
-        if installer == Vimmer::Installers::Github
+        if installer == Vimmer::Installers::Github ||
+           installer == Vimmer::Installers::GitUrl
           installer = installer.new(:path => path)
         end
         installer.install
