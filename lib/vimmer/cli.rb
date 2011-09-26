@@ -26,7 +26,6 @@ module Vimmer
       end
     end
 
-
     desc "uninstall NAME", "Removes plugin named NAME"
     def uninstall(name)
       unless Vimmer.plugin?(name)
@@ -35,6 +34,15 @@ module Vimmer
       end
       installer = Vimmer::Installers::Github.new(:name => name)
       installer.uninstall
+    end
+
+    desc "list", "Lists currently installed plugins"
+    def list
+      plugins = Vimmer.plugins
+      longest_name = plugins.keys.max { |a, b| a.length <=> b.length }
+      plugins.each do |name, path|
+        printf "%-#{longest_name.size}s  %s\n", name, "[#{path}]"
+      end
     end
 
     private
