@@ -3,3 +3,4 @@ pkg/*
 .bundle
 tmp/
 log
+*.swp

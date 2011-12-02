@@ -1,4 +1,4 @@
-Feature: Install plugin
+Feature: Install github plugin
 
   Background:
     Given a directory named ".vimmer"
@@ -7,7 +7,7 @@ Feature: Install plugin
 
   Scenario: Install from Github
     When I successfully run "vimmer install 'https://github.com/tpope/vim-awesomemofo.git'"
-    Then a plugin named "vim-awesomemofo" should be installed
+    Then a github plugin named "vim-awesomemofo" should be installed
     And the stdout should contain "vim-awesomemofo has been installed"
 
   Scenario: Install from Github with bad URL
@@ -28,7 +28,7 @@ Feature: Install plugin
 
   Scenario Outline: Install from Github with a front-end Github URL
     When I successfully run "vimmer install '<URL>'"
-    Then a plugin named "vim-awesomemofo" should be installed
+    Then a github plugin named "vim-awesomemofo" should be installed
     And the stdout should contain "vim-awesomemofo has been installed"
 
     Examples:
@@ -43,8 +43,4 @@ Feature: Install plugin
     awesomemofo.vim has been installed
     """
 
-  @wip
-  Scenario: Install from vim.org
-    When I successfully run "vimmer install http://www.vim.org/scripts/script.php?script_id=2975"
-    Then a plugin named "fugitive.vim" should be installed
-    And the stdout should contain "fugitive.vim has been installed"
+

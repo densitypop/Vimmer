@@ -1,6 +1,11 @@
-Then /^a plugin named "([^"]*)" should be installed$/ do |name|
+Then /^a github plugin named "([^"]*)" should be installed$/ do |name|
   @vimmer.installed_plugins.should include(name)
   @vimmer.plugin_store[name].should =~ %r{https://github.com/.*/#{name}\.git}
+end
+
+Then /^a git plugin named "([^"]*)" should be installed$/ do |name|
+  @vimmer.installed_plugins.should include(name)
+  @vimmer.plugin_store[name].should =~ %r{git://(\w|[.+/])+/#{name}\.git}
 end
 
 Then /^I should still not have any plugins installed$/ do

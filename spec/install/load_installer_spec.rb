@@ -11,6 +11,13 @@ describe "When loading an installer by URL" do
 
   end
 
+  context "for a git:// URL" do
+
+    subject { Installers.for_url("git://git.wincent.com/command-t.git") }
+
+    it { should == Installers::GitUrl }
+
+  end  
 
   context "for a Vim.org URL" do
 
@@ -23,7 +30,6 @@ describe "When loading an installer by URL" do
     it { should == Installers::VimDotOrg }
 
   end
-
 
   context "for an unrecognized URL" do
 

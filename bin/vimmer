@@ -1,3 +1,9 @@
 #!/usr/bin/env ruby
+
+libdir = "#{File.dirname(__FILE__)}/../lib"
+$:.unshift(File.expand_path(libdir)) unless
+    $:.include?(libdir) || $:.include?(File.expand_path(libdir))
+
+
 require 'vimmer/cli'
 Vimmer::CLI.start
