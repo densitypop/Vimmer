@@ -9,11 +9,6 @@ module Vimmer
       setup
       begin
         installer = Vimmer::Installers.for_url(path)
-        # TODO: Make this consistent with VimDotOrg installer
-        if installer == Vimmer::Installers::Github ||
-           installer == Vimmer::Installers::GitUrl
-          installer = installer.new(:path => path)
-        end
         installer.install
       rescue Vimmer::InstallerNotFoundError => e
         $stderr.puts "The URL #{e.path} is invalid."
@@ -33,7 +28,7 @@ module Vimmer
         $stderr.puts "The plugin #{name} is not installed."
         exit 1
       end
-      installer = Vimmer::Installers::Github.new(:name => name)
+      installer = Vimmer::Installers::BaseInstaller.new(:name => name)
       installer.uninstall
     end
 
@@ -44,6 +39,16 @@ module Vimmer
       plugins.each do |name, path|
         printf "%-#{longest_name.size}s  %s\n", name, "[#{path}]"
       end
+    end
+
+    desc "pathogen", "Installs pathogen"
+    def pathogen
+      installer = Vimmer::Installers::Pathogen.new
+      installer.install
+      
+    rescue Vimmer::PluginNotFoundError
+      $stderr.puts "The plugin #{installer.plugin_name} could not be found"
+      exit 1
     end
 
     private

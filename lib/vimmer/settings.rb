@@ -95,7 +95,8 @@ module Vimmer
 
 
     def defaults
-      { "bundle_path" => "~/.vim/bundle" }
+      { "bundle_path" => "~/.vim/bundle",
+        "autoload_path" => "~/.vim/autoload" }
     end
 
   end

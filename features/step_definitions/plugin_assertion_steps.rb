@@ -12,4 +12,3 @@ Then /^I should still not have any plugins installed$/ do
   @vimmer.installed_plugins.should be_empty
   @vimmer.plugin_store.should == {}
 end
-

@@ -6,19 +6,16 @@ module Vimmer
     autoload :Github,        'vimmer/installers/github'
     autoload :GitUrl,        'vimmer/installers/git_url'
     autoload :VimDotOrg,     'vimmer/installers/vim_dot_org'
+    autoload :Pathogen,      'vimmer/installers/pathogen'
+
+    @installers = [Github, GitUrl, VimDotOrg]
 
     def for_url(url)
-      if Github.match?(url)
-        Github
-      elsif GitUrl.match?(url)
-        GitUrl
-      elsif VimDotOrg.match?(url)
-        VimDotOrg.for_url(url)
-      else
-        raise Vimmer::InstallerNotFoundError.new(url)
+      @installers.each do |installer|
+        return installer.new(:path => url) if installer.match? url
       end
+
+      raise Vimmer::InstallerNotFoundError.new(url)
     end
-
-
   end
 end

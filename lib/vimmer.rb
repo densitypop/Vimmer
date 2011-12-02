@@ -30,6 +30,10 @@ module Vimmer
   end
   module_function :bundle_path
 
+  def autoload_path
+    settings[:autoload_path]
+  end
+  module_function :autoload_path
 
   def settings
     @settings ||= Settings.new
