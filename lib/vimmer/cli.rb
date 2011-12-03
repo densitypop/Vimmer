@@ -30,6 +30,26 @@ module Vimmer
       end
       installer = Vimmer::Installers::BaseInstaller.new(:name => name)
       installer.uninstall
+    rescue Vimmer::PluginNotFoundError
+      $stderr.puts "The plugin #{installer.plugin_name} could not be found"
+      exit 1
+    end
+
+    desc "update [NAME]", "Updates the plugin named NAME or all the plugins if no name is given"
+    def update(name=nil)
+      if name
+        unless Vimmer.plugin?(name)
+          $stderr.puts "The plugin #{name} is not installed."
+          exit 1
+        end
+        installer = Vimmer::Installers::BaseInstaller.new(:name => name)
+        installer.update
+      else
+        Vimmer.plugins.each do |name, path|
+          update name
+        end
+        puts "all plugins updated"
+      end
     end
 
     desc "list", "Lists currently installed plugins"
@@ -57,12 +77,9 @@ module Vimmer
       Vimmer.setup
     end
 
-
     def method_missing(name, *args)
       $stderr.puts 'Could not find command "%s".' % name
       exit 1
     end
-
-
   end
 end
